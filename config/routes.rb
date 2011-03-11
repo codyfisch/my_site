@@ -1,4 +1,6 @@
 MySite::Application.routes.draw do
+  resources :articles
+
   get "pages/home"
 
   get "pages/contact"
