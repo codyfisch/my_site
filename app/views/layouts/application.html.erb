@@ -1,45 +1,64 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <%= csrf_meta_tag %>
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <%= stylesheet_link_tag '960/960.min', :media => 'all' %>
-    <!--[if lt IE 8]><%= stylesheet_link_tag 'ie' %><![endif]-->
-    <%= stylesheet_link_tag 'custom.css', :media => 'screen' %>
-  </head>
-  <body>
-  <div class="container">
-      <nav>
-        <%= link_to "Home", '#' %>
-        <%= link_to "Media", '#' %>
-        <%= link_to "Blog", '#' %>
-        <%= link_to "About", '#' %>
-      </nav>
-    <div class="contents">
-      <header>
-        <a href="#">Sign Up</a>
-        <a href="#">Sign In</a>
-        <a href="#">Settings</a>
-      </header>
+<head>
+  <title><%= title %></title>
+  <%= csrf_meta_tag %>
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <%= stylesheet_link_tag '960/960.min', :media => 'all' %>
+  <!--[if lt IE 8]><%= stylesheet_link_tag 'ie' %><![endif]-->
+  <%= stylesheet_link_tag 'custom.css', :media => 'screen' %>
+  <%= stylesheet_link_tag 'application.css', :media => 'screen' %>
+</head>
+<body>
 
-      <h1 class="big_title"><%=	@big_title  %></h1>
-       <%= yield %>
+<div id="header">
+  <h1><%= link_to "Blog", root_path %></h1>
+  <div id="user_bar">
+    <% if logged_in? %>
+        <%= link_to "New Article", new_article_path %> |
+        <%= link_to "Edit Password", edit_user_path(current_user) %> |
+        <%= link_to "Logout", logout_path %>
+    <% else %>
+        <%= link_to "Login", login_path %>
+    <% end %>
+  </div>
+</div>
 
-      <footer>
-        <section class="tweets">
-          tweets here.
-        </section>
-        <section class="github">
-          github crap here
-        </section>
-      </footer>
-    </div>
+<div class="container">
 
+  <%= content_tag :p, notice, :class => 'notice' if notice.present? %>
+  <%= content_tag :p, alert, :class => 'alert' if alert.present? %>
+
+  <nav>
+    <%= link_to "Home", '#' %>
+    <%= link_to "Media", '#' %>
+    <%= link_to "Blog", '#' %>
+    <%= link_to "About", '#' %>
+  </nav>
+  <div class="contents">
+    <header>
+      <a href="#">Sign Up</a>
+      <a href="#">Sign In</a>
+      <a href="#">Settings</a>
+    </header>
+
+    <h1 class="big_title"><%=	@big_title  %></h1>
+    <%= yield %>
+
+    <footer>
+      <section class="tweets">
+        tweets here.
+      </section>
+      <section class="github">
+        github crap here
+      </section>
+    </footer>
   </div>
 
+</div>
 
-  </body>
+
+</body>
 </html>
