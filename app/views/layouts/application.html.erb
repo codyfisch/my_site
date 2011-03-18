@@ -1,39 +1,32 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title><%= title %></title>
+  <title>Blog</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag 'jquery-1.4.2.min', 'rails', 'application' %>
   <%= csrf_meta_tag %>
-  <!--[if lt IE 9]>
-  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-  <!--[if lt IE 8]><%= stylesheet_link_tag 'ie' %><![endif]-->
-  <%= stylesheet_link_tag 'application.css', :media => 'screen' %>
 </head>
 <body>
-<div id="header">
-  <h1><%= link_to "Blog", root_path %></h1>
-  <div id="user_bar">
-    <% if logged_in? %>
+  <div id="header">
+    <h1><%= link_to "Blog", root_path %></h1>
+    <div id="user_bar">
+      <% if logged_in? %>
         <%= link_to "New Article", new_article_path %> |
         <%= link_to "Edit Password", edit_user_path(current_user) %> |
         <%= link_to "Logout", logout_path %>
-    <% else %>
+      <% else %>
         <%= link_to "Login", login_path %>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
-<div id="main">
-  <%= content_tag(:p, notice, :class => 'notice') if notice.present? %>
-  <%= content_tag(:p, alert, :class => 'alert') if alert.present? %>
-  <%= yield %>
-</div>
-<footer>
-  <section class="tweets">
-    tweets here.
-  </section>
-  <section class="github">
-    github crap here
-  </section>
-</footer>
+  <div id="main">
+    <%= content_tag(:p, notice, :class => 'notice') if notice.present? %>
+    <%= content_tag(:p, alert, :class => 'alert') if alert.present? %>
+    <%= yield %>
+  </div>
+  <div id="footer">
+    A simple blog built for the book <a href="http://beginningrails.com">Beginning Rails 3</a>
+  </div>
 </body>
 </html>

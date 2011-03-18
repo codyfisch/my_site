@@ -20,7 +20,6 @@ class CommentsController < ApplicationController
   
   private
     def load_article
-#      @article = current_user.articles.find(params[:article_id])
       @article = Article.find(params[:article_id])
     end
 end
