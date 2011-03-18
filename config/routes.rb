@@ -1,4 +1,4 @@
-MySite::Application.routes.draw do
+MySite::Application.routes.draw do |map|
   root :to => "articles#index"
   resources :articles do
     resources :comments
@@ -9,11 +9,9 @@ MySite::Application.routes.draw do
   match '/logout' => "sessions#destroy", :as => "logout"
 
 
-  get "pages/home"
-
-  get "pages/contact"
-
-  get "pages/about"
-
+#  get "pages/home"
+#  get "pages/contact"
+#  get "pages/about"
+  resources :pages
 
 end

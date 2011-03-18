@@ -42,7 +42,7 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.xml
   def create
-    @article = current_user.articles.create(params[:article])
+    @article = current_user.articles.new(params[:article])
 
     respond_to do |format|
       if @article.save
